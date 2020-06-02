@@ -1,8 +1,17 @@
-<siv class="center jumbotron">
+<% if logged_in? %>
+
+  <p>ログイン完了ユーザ:
+<%= current_user.name %>
+</p>
+<% else %>
+
+
+<div class="center jumbotron">
   <div class="text-center">
-    <hi>Welcome to the Tasklist</hi>
+    <hi>Welcome to the Tasklists</hi>
     
 <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     
   </div>
-</siv>
+</div>
+<% end %>
