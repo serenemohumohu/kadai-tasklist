@@ -1,6 +1,6 @@
 <h1>タスク一覧</h1>
 
-<% if @tasks.any? %>
+<% if @tasklists.any? %>
 
   <table class="table table-striped">
     <thead>
@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       
-<% @tasks.each do |task| %>
+<% @tasklists.each do |task| %>
 
       <tr>
         <td>
@@ -32,7 +32,6 @@
   </table>
   <div>
 
-<%= paginate @tasks %>    
 
   </div>
 <% end %>

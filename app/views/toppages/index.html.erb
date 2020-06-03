@@ -1,12 +1,29 @@
 <% if logged_in? %>
 
-  <p>ログイン完了ユーザ:
-<%= current_user.name %>
-</p>
-<% else %>
+  <div class="row">
+    <aside class="col-sm-4">
+      
+<%= form_with(model: @tasklist, local: true) do |f| %>
 
+      <div class="form-group">
+        
+<%= f.text_area :content, class: 'form-control', rows: 5 %>
+        
+      </div>
+      
+<%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
 
-<div class="center jumbotron">
+<% end %>
+      
+    </aside>
+    <div class="col-sm-8">
+      
+<%= render 'tasklists/tasklists', tasklists: @tasklists %>
+      
+    </div>
+  </div>
+
+  <div class="center jumbotron">
   <div class="text-center">
     <hi>Welcome to the Tasklists</hi>
     
