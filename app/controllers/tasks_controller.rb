@@ -3,10 +3,13 @@ class TasksController < ApplicationController
   before_action :correct_user, only: [:destroy]
   
   def index
-    @tasklists = current_user.tasks
+    if logged_in?
+      @tasklists = current_user.tasks
+    end
   end
   
   def show
+    set_task
   end
   
   def new
@@ -20,18 +23,31 @@ class TasksController < ApplicationController
       flash[:success] = "タスクが正常に登録されました"
       redirect_to root_url
     else
-      @tasks = current_user.tasks.order(id: :desc).pafe(params[:page]).per(3)
+      @tasks = current_user.tasks.order(id: :desc).page(params[:page]).per(3)
       flash.now[:danger] = "タスクが登録されませんでした"
       render :new
     end
   end
   
   def edit
-    @task = current_user.tasks.find(params[:id])
+    set_task
   end
   
+  def update
+    set_task
+    if @task.update(task_params)
+      flash[:success] = 'タスクは正常に更新されました。'
+      redirect_to @task
+    else
+      flash.now[:danger] = 'タスクは更新されませんでした。'
+      render :edit
+    end
+  end 
+  
   def destroy
+    set_task
     @task.destroy
+    
     flash[:success] = 'タスクを削除しました。'
     redirect_to tasks_url
   end
