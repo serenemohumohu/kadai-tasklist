@@ -1,11 +1,9 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:update, :destroy]
   
   def index
-    if logged_in?
-      @tasklists = current_user.tasks
-    end
+    @tasklists = current_user.tasks
   end
   
   def show
