@@ -1,6 +1,6 @@
 <h1>タスク一覧</h1>
 
-<% if @tasklists.any? %>
+<% if @tasks.any? %>
 
   <table class="table table-striped">
     <thead>
@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       
-<% @tasklists.each do |task| %>
+<% @tasks.each do |task| %>
 
       <tr>
         <td>
